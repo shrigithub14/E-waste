@@ -18,6 +18,13 @@
     
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script type="text/javascript">
+  (function(){
+      emailjs.init("jSpdnzDhGaDiOFGEN");
+  })();
+</script>
+
     <script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
@@ -330,7 +337,34 @@
     <!-- Core theme JS-->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"></script>
-    <script src="js/scripts.js"></script>
+
+    <script type="text/javascript">
+        document.getElementById("e-waste-form").addEventListener("submit", function(event) {
+          event.preventDefault(); // Prevent form from submitting the default way
+      
+          // Get form data
+          var formData = {
+            pickupAddress: document.getElementById("pickupAddress").value,
+            landmark: document.getElementById("landmark").value,
+            city: document.getElementById("city").value,
+            state: document.getElementById("state").value,
+            ewasteType: document.getElementById("ewasteType").value,
+            ewasteDetails: document.getElementById("ewasteDetails").value,
+            contactNumber: document.getElementById("contactNumber").value,
+            email: document.getElementById("email").value,
+            pickupDate: document.getElementById("pickupDate").value,
+          };
+      
+          // Send the email
+          emailjs.send("service_jyvw65f", "template_p8vbwex", formData)
+            .then(function(response) {
+              alert("E-waste collection details sent successfully!");
+            }, function(error) {
+              alert("Failed to send details. Please try again later.");
+            });
+        });
+      </script>
+      
     
 </body>
 
