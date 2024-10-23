@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Learn about e-waste and its proper management to protect the environment." />
+    <meta name="author" content="E-Waste Management Initiative" />
+    <title>E-Waste and E-Waste Management</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Bootstrap Icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
+    <!-- SimpleLightbox plugin CSS-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
+    
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+        import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCQv-tDy1lx7bQrrctOkCFx_JZGeGtnxCQ",
+            authDomain: "sample-firebase-ai-app-4c869.firebaseapp.com",
+            databaseURL: "https://sample-firebase-ai-app-4c869-default-rtdb.firebaseio.com",
+            projectId: "sample-firebase-ai-app-4c869",
+            storageBucket: "sample-firebase-ai-app-4c869.appspot.com",
+            messagingSenderId: "197188553709",
+            appId: "1:197188553709:web:032804a67296f829a3b5e4"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        // Function to handle form submission
+        document.addEventListener("DOMContentLoaded", () => {
+            const form = document.querySelector("#e-waste-form form");
+            form.addEventListener("submit", (event) => {
+                event.preventDefault(); // Prevent default form submission
+
+                const formData = new FormData(form);
+                const data = Object.fromEntries(formData);
+
+                // Save data to Firebase
+                const ewasteRef = ref(database, 'eWaste/' + Date.now()); // Use timestamp as unique key
+                set(ewasteRef, data)
+                    .then(() => {
+                        alert("E-Waste details submitted successfully!");
+                        form.reset(); // Clear the form after submission
+                    })
+                    .catch((error) => {
+                        console.error("Error submitting form: ", error);
+                        alert("There was an error submitting your details.");
+                    });
+            });
+        });
+    </script>
+</head>
+
+<body id="page-top">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="#page-top">E-Waste Management</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto my-2 my-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#importance">Importance</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#process">Process</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.html">Login As Admin</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Masthead-->
+    <header class="masthead" style="background-image: url('assets/img/Banner.png');">
+        <div class="container px-4 px-lg-5 h-100">
+            <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+                <div class="col-lg-8 align-self-end">
+                    <h1 class="text-white font-weight-bold">E-Waste: A Growing Global Concern</h1>
+                    <hr class="divider" />
+                </div>
+                <div class="col-lg-8 align-self-baseline">
+                    <p class="text-white-75 mb-5">Learn how to manage electronic waste and help protect the environment for future generations.</p>
+                    <a class="btn btn-primary btn-xl" href="#about">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- About-->
+    <section class="page-section bg-primary" id="about">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2 class="text-white mt-0">What is E-Waste?</h2>
+                    <hr class="divider divider-light" />
+                    <p class="text-white-75 mb-4">
+                        E-Waste refers to discarded electrical and electronic devices, including computers, televisions, mobile phones, and household appliances. Due to the rapid advancement of technology, the amount of e-waste generated is growing exponentially worldwide.
+                    </p>
+                    <a class="btn btn-light btn-xl" href="#importance">Why It Matters</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Importance of E-Waste Management-->
+    <section class="page-section" id="importance">
+        <div class="container px-4 px-lg-5">
+            <h2 class="text-center mt-0">Why E-Waste Management is Important</h2>
+            <hr class="divider" />
+            <p class="text-muted text-center mb-5">Improper disposal of e-waste can lead to harmful environmental effects and pose health risks to humans and animals.</p>
+            <div class="row gx-4 gx-lg-5">
+                <div class="col-lg-4 col-md-6 text-center">
+                    <div class="mt-5">
+                        <div class="mb-2"><i class="bi-recycle fs-1 text-primary"></i></div>
+                        <h3 class="h4 mb-2">Reduce Environmental Impact</h3>
+                        <p class="text-muted mb-0">Proper e-waste disposal prevents toxic substances like lead and mercury from contaminating the soil and water.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 text-center">
+                    <div class="mt-5">
+                        <div class="mb-2"><i class="bi-heart fs-1 text-primary"></i></div>
+                        <h3 class="h4 mb-2">Protect Human Health</h3>
+                        <p class="text-muted mb-0">Many electronic devices contain hazardous materials that, if not handled properly, can affect human health.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 text-center">
+                    <div class="mt-5">
+                        <div class="mb-2"><i class="bi-lightbulb fs-1 text-primary"></i></div>
+                        <h3 class="h4 mb-2">Conserve Natural Resources</h3>
+                        <p class="text-muted mb-0">Recycling e-waste can recover valuable materials like gold, copper, and plastic, reducing the need for new resources.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- E-Waste Management Process-->
+    <section class="page-section bg-light" id="process">
+        <div class="container px-4 px-lg-5">
+            <h2 class="text-center mt-0">How E-Waste is Managed</h2>
+            <hr class="divider" />
+            <p class="text-muted text-center mb-5">Proper e-waste management involves collection, recycling, and disposal processes designed to minimize environmental and health risks.</p>
+            <div class="row gx-4 gx-lg-5">
+                <div class="col-lg-4 col-md-6 text-center">
+                    <div class="mt-5">
+                        <div class="mb-2"><i class="bi-box-arrow-in-down fs-1 text-primary"></i></div>
+                        <h3 class="h4 mb-2">Collection</h3>
+                        <p class="text-muted mb-0">E-waste is collected from households, businesses, and organizations to ensure proper handling.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 text-center">
+                    <div class="mt-5">
+                        <div class="mb-2"><i class="bi-gear fs-1 text-primary"></i></div>
+                        <h3 class="h4 mb-2">Recycling</h3>
+                        <p class="text-muted mb-0">Materials like metals, plastics, and glass are separated and recycled for future use.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 text-center">
+                    <div class="mt-5">
+                        <div class="mb-2"><i class="bi-trash fs-1 text-primary"></i></div>
+                        <h3 class="h4 mb-2">Safe Disposal</h3>
+                        <p class="text-muted mb-0">Hazardous materials are safely disposed of to prevent harm to the environment and public health.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div id="portfolio">
+        <div class="container-fluid p-0">
+            <div class="row g-0">
+                <div class="col-lg-4 col-sm-6">
+                    <a class="portfolio-box" href="assets/img/portfolio/fullsize/1.jpg" title="E-waste Recycling">
+                        <img class="img-fluid" src="assets/img/portfolio/thumbnails/a.webp" alt="E-waste Recycling Project" />
+                        <div class="portfolio-box-caption">
+                            <div class="project-category text-white-50">Recycling</div>
+                            <div class="project-name">E-waste Recycling</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a class="portfolio-box" href="assets/img/portfolio/fullsize/2.jpg" title="Responsible Disposal">
+                        <img class="img-fluid" src="assets/img/portfolio/thumbnails/b.webp" alt="Responsible Disposal Project" />
+                        <div class="portfolio-box-caption">
+                            <div class="project-category text-white-50">Disposal</div>
+                            <div class="project-name">Responsible Disposal</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a class="portfolio-box" href="assets/img/portfolio/fullsize/3.jpg" title="E-waste Awareness Campaign">
+                        <img class="img-fluid" src="assets/img/portfolio/thumbnails/c.jpg" alt="E-waste Awareness Campaign" />
+                        <div class="portfolio-box-caption">
+                            <div class="project-category text-white-50">Awareness</div>
+                            <div class="project-name">E-waste Awareness Campaign</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a class="portfolio-box" href="assets/img/portfolio/fullsize/4.jpg" title="Recycling Hub Setup">
+                        <img class="img-fluid" src="assets/img/portfolio/thumbnails/d.jpg" alt="Recycling Hub Setup" />
+                        <div class="portfolio-box-caption">
+                            <div class="project-category text-white-50">Infrastructure</div>
+                            <div class="project-name">Recycling Hub Setup</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a class="portfolio-box" href="assets/img/portfolio/fullsize/5.jpg" title="Sustainable Electronics">
+                        <img class="img-fluid" src="assets/img/portfolio/thumbnails/e.jpg" alt="Sustainable Electronics Project" />
+                        <div class="portfolio-box-caption">
+                            <div class="project-category text-white-50">Sustainability</div>
+                            <div class="project-name">Sustainable Electronics</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a class="portfolio-box" href="assets/img/portfolio/fullsize/6.jpg" title="Circular Economy">
+                        <img class="img-fluid" src="assets/img/portfolio/thumbnails/f.webp" alt="Circular Economy Project" />
+                        <div class="portfolio-box-caption p-3">
+                            <div class="project-category text-white-50">Economy</div>
+                            <div class="project-name">Circular Economy</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+
+
+    <!-- Call to action-->
+    <section class="page-section bg-dark text-white">
+        <div class="container px-4 px-lg-5 text-center">
+            <h2 class="mb-4">Join the E-Waste Management Initiative</h2>
+            <a class="btn btn-light btn-xl" href="#contact">Get Involved</a>
+        </div>
+    </section>
+    <!-- Contact-->
+    <div id="e-waste-form" class="container my-5 py-5" style="max-width: 700px;">
+        <h2 class="text-center mb-4">E-Waste Collection Form</h2>
+        <form action="/submit-ewaste" method="POST">
+            <!-- Address from which we will pick e-waste -->
+            <div class="mb-3">
+                <label for="pickupAddress" class="form-label">Pickup Address</label>
+                <input type="text" class="form-control" id="pickupAddress" name="pickupAddress" placeholder="Enter your address" required>
+            </div>
+    
+            <!-- Landmark -->
+            <div class="mb-3">
+                <label for="landmark" class="form-label">Landmark</label>
+                <input type="text" class="form-control" id="landmark" name="landmark" placeholder="Enter a nearby landmark" required>
+            </div>
+    
+            <!-- City -->
+            <div class="mb-3">
+                <label for="city" class="form-label">City</label>
+                <input type="text" class="form-control" id="city" name="city" placeholder="Enter your city" required>
+            </div>
+    
+            <!-- State -->
+            <div class="mb-3">
+                <label for="state" class="form-label">State</label>
+                <input type="text" class="form-control" id="state" name="state" placeholder="Enter your state" required>
+            </div>
+    
+            <!-- Type of E-waste -->
+            <div class="mb-3">
+                <label for="ewasteType" class="form-label">Type of E-Waste</label>
+                <select class="form-select" id="ewasteType" name="ewasteType" required>
+                    <option value="" selected>Select e-waste type</option>
+                    <option value="small-appliances">Small Appliances (e.g., Toaster, Mixer)</option>
+                    <option value="large-appliances">Large Appliances (e.g., Refrigerator, AC)</option>
+                    <option value="electronics">Electronics (e.g., Mobile, Laptop)</option>
+                    <option value="batteries">Batteries</option>
+                    <option value="others">Other</option>
+                </select>
+            </div>
+    
+            <!-- Additional Details -->
+            <div class="mb-3">
+                <label for="ewasteDetails" class="form-label">Additional Details</label>
+                <textarea class="form-control" id="ewasteDetails" name="ewasteDetails" rows="3" placeholder="Provide any additional details about the e-waste"></textarea>
+            </div>
+    
+            <!-- Contact Information -->
+            <div class="mb-3">
+                <label for="contactNumber" class="form-label">Contact Number</label>
+                <input type="tel" class="form-control" id="contactNumber" name="contactNumber" placeholder="Enter your contact number" required>
+            </div>
+    
+            <div class="mb-3">
+                <label for="email" class="form-label">Email Address</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+    
+            <!-- Preferred Pickup Date -->
+            <div class="mb-3">
+                <label for="pickupDate" class="form-label">Preferred Pickup Date</label>
+                <input type="date" class="form-control" id="pickupDate" name="pickupDate" required>
+            </div>
+    
+            <!-- Submit Button -->
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Submit E-Waste Details</button>
+            </div>
+        </form>
+    </div>
+    
+    <!-- Footer-->
+    <footer class="bg-light py-5">
+        <div class="container px-4 px-lg-5">
+            <div class="small text-center text-muted">© 2024 E-Waste Management Initiative. All Rights Reserved.</div>
+        </div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- SimpleLightbox plugin JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+    <script src="js/scripts.js"></script>
+    
+</body>
+
+</html>
